@@ -79,7 +79,8 @@ type SharedDivProps = Pick<
   'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'className' | 'style'
 >;
 
-export interface DataGridProps<R, SR = unknown, K extends Key = Key> extends SharedDivProps {
+export interface DataGridProps<R, SR = unknown, K extends Key = Key>
+  extends React.PropsWithChildren<SharedDivProps> {
   /**
    * Grid and data Props
    */
@@ -211,7 +212,8 @@ function DataGrid<R, SR, K extends Key>(
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedBy,
-    'data-testid': testId
+    'data-testid': testId,
+    children
   }: DataGridProps<R, SR, K>,
   ref: React.Ref<DataGridHandle>
 ) {
@@ -1091,6 +1093,7 @@ function DataGrid<R, SR, K extends Key>(
           })}
         </>
       )}
+      {children}
     </div>
   );
 }
